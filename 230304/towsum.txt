@@ -4,3 +4,31 @@ DESC:
 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
 
 你可以按任意顺序返回答案
+
+
+METHOD 1:暴力破解
+
+func twoSum(nums []int, target int) []int {
+    l := len(nums)
+    for i:=0; i < l; i++ {
+        for j := i+1;j<l;j++{
+            if nums[i] + nums[j] == target {
+                return []int{i,j}
+            }
+        }
+    }
+    return nil
+}
+
+METHOD 2:哈希表
+
+func twoSum(nums []int, target int) []int {
+    n := map[int]int{}
+    for k,v := range nums {
+        if l, ok := n[target-v]; ok {
+            return []int{k,l}
+        }
+        n[v] = k
+    }
+    return nil
+}
